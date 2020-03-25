@@ -1,6 +1,12 @@
 const express = require('express');
-
+const dbConnect = require('./config/database');
 const app = express();
+
+// Connect Databade
+dbConnect();
+
+// Middleware For User Body Data
+app.use(express.json({ extended: false }));
 
 //Add Route
 app.get('/', (req, res) => res.json({ msg: 'Password Saver API' }));

@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://jordanxwa:jordanxwa@passwordsaver-ztmbr.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "jwtSecret"
+}
