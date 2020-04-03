@@ -1,7 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import AuthContext from '../../context/authentication/AuthContext';
+import AlertContext from '../../context/alert/AlertContext';
 
-function LogIn() {
+function LogIn(props) {
+  const authContext = useContext(AuthContext);
+
+  const alertContext = useContext(AlertContext);
+
+  // Destructuring
+  const { login, error, clearErrors, isAuth } = authContext;
+
+  useEffect(() => {
+    // If Auth is true
+    if (isAuth) {
+      // Redirect to homepage
+      props.history.push('/');
+    }
+
+    if (error === 'Invalid Credentials') {
+      setAlert(error, 'danger');
+      clearErrors();
+    }
+    // eslint-disable-next-line
+  }, [error, isAuth, props.history]);
+
+  const { setAlert } = alertContext;
+
   const [user, setUser] = useState({
     email: '',
     password: ''
@@ -18,7 +43,11 @@ function LogIn() {
   // On Submit Function
   const onSubmit = e => {
     e.preventDefault();
-    console.log('Log In!');
+
+    login({
+      email,
+      password
+    });
   };
 
   return (
@@ -31,8 +60,10 @@ function LogIn() {
             type='email'
             name='email'
             className='form-control'
+            autoComplete='email'
             value={email}
             onChange={onChange}
+            required
           />
         </div>
 
@@ -42,8 +73,10 @@ function LogIn() {
             type='password'
             name='password'
             className='form-control'
+            autoComplete='current-password'
             value={password}
             onChange={onChange}
+            required
           />
         </div>
 

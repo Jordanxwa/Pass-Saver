@@ -1,7 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import AuthContext from '../../context/authentication/AuthContext';
+import AlertContext from '../../context/alert/AlertContext';
 
-function SignUp() {
+function SignUp(props) {
+  const authContext = useContext(AuthContext);
+
+  const alertContext = useContext(AlertContext);
+
+  // Destructuring
+  const { register, error, clearErrors, isAuth } = authContext;
+
+  const { setAlert } = alertContext;
+
+  useEffect(() => {
+    // If Auth is true
+    if (isAuth) {
+      // Redirect to homepage
+      props.history.push('/');
+    }
+
+    if (error === 'This user already exists') {
+      setAlert(error, 'danger');
+      clearErrors();
+    }
+    // eslint-disable-next-line
+  }, [error, isAuth, props.history]);
+
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -19,7 +44,12 @@ function SignUp() {
   // On Submit Function
   const onSubmit = e => {
     e.preventDefault();
-    console.log('Register!');
+
+    register({
+      name,
+      email,
+      password
+    });
   };
 
   return (
@@ -34,6 +64,7 @@ function SignUp() {
             className='form-control'
             value={name}
             onChange={onChange}
+            required
           />
         </div>
 
@@ -42,9 +73,11 @@ function SignUp() {
           <input
             type='email'
             name='email'
+            autoComplete='email'
             className='form-control'
             value={email}
             onChange={onChange}
+            required
           />
         </div>
 
@@ -54,8 +87,11 @@ function SignUp() {
             type='password'
             name='password'
             className='form-control'
+            autoComplete='current-password'
             value={password}
             onChange={onChange}
+            required
+            minLength='6'
           />
         </div>
 

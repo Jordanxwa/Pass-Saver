@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import AuthContext from '../context/authentication/AuthContext';
 
 function Navbar({ title, icon }) {
+  const authContext = useContext(AuthContext);
+
+  // Destructuring
+  const { isAuth, logout } = authContext;
+
+  //User Logout Function
+  const userLogout = () => {
+    logout();
+  };
+
   return (
-    <div className='navbar bg-light'>
+    <div className='navbar bg-light mb-3'>
       <h1 className='text-dark'>
         <i className={icon} /> {title}
       </h1>
       <ul>
         <li>
-          <Link to='/'>Home</Link>
+          {/* If Auth is true display a logout btn */}
+          {isAuth ? (
+            <a onClick={userLogout} href='login'>
+              <button className='btn btn-secondary'>Logout</button>
+            </a>
+          ) : (
+            <div></div>
+          )}
         </li>
       </ul>
     </div>
