@@ -1,3 +1,5 @@
+export const GET_WEBSITES = 'GET_WEBSITES';
+export const CLEAR_WEBSITES = 'CLEAR_WEBSITES';
 export const ADD_WEBSITE = 'ADD_WEBSITE';
 export const DELETE_WEBSITE = 'DELETE_WEBSITE';
 export const UPDATE_WEBSITE = 'UPDATE_WEBSITE';
@@ -14,5 +16,6 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const REMOVE_ERRORS = 'REMOVE_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const WEBSITE_ERROR = 'WEBSITE_ERROR';
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';

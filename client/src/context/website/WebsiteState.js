@@ -1,12 +1,15 @@
 import React, { useReducer } from 'react';
-import { v4 as uuid } from 'uuid';
+import axios from 'axios';
 import WebsiteContext from './WebsiteContext';
 import WebsiteReducer from './WebsiteReducer';
 import {
   ADD_WEBSITE,
+  GET_WEBSITES,
+  CLEAR_WEBSITES,
   DELETE_WEBSITE,
   UPDATE_WEBSITE,
   FILTER_WEBSITE,
+  WEBSITE_ERROR,
   CLEAR_CURRENT,
   SET_CURRENT,
   CLEAR_FILTER
@@ -15,46 +18,85 @@ import {
 // Create Initial State
 const WebsiteState = props => {
   const initialState = {
-    websites: [
-      {
-        id: 1,
-        website: 'Facebook.com',
-        username: 'BobFace',
-        password: 'facebook123'
-      },
-      {
-        id: 2,
-        website: 'Amazon.com',
-        username: 'JohnAmaz',
-        password: 'amazon123'
-      },
-      {
-        id: 3,
-        website: 'Ebay.com',
-        username: 'KateEbs',
-        password: 'ebay123'
-      }
-    ],
+    websites: [],
     // For Edits
     current: null,
     // For Filter
-    filtered: null
+    filtered: null,
+    //Error
+    error: null
   };
 
   // State: Allows access to anything in the state
   // Dispatch: Allows to dispatch objects to the reducer
   const [state, dispatch] = useReducer(WebsiteReducer, initialState);
 
+  // Get Websites
+  const getWebsites = async () => {
+    try {
+      // Make post req to back-end
+      const res = await axios.get('./api/websites');
+
+      // Gets all websites from that user
+      dispatch({ type: GET_WEBSITES, payload: res.data });
+    } catch (error) {
+      dispatch({ type: WEBSITE_ERROR, payload: error.response.msg });
+    }
+  };
+
   // Add Website
-  const addWebsite = website => {
-    // Add Id
-    website.id = uuid.v4;
-    dispatch({ type: ADD_WEBSITE, payload: website });
+  const addWebsite = async website => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    try {
+      // Make post req to back-end
+      const res = await axios.post('./api/websites', website, config);
+
+      dispatch({ type: ADD_WEBSITE, payload: res.data });
+    } catch (error) {
+      dispatch({ type: WEBSITE_ERROR, payload: error.response.msg });
+    }
+  };
+
+  // Update Website
+  const updateWebsite = async website => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    try {
+      // Make post req to back-end
+      const res = await axios.put(
+        `./api/websites/${website._id}`,
+        website,
+        config
+      );
+
+      dispatch({ type: UPDATE_WEBSITE, payload: res.data });
+    } catch (error) {
+      dispatch({ type: WEBSITE_ERROR, payload: error.response.msg });
+    }
   };
 
   // Delete Website
-  const deleteWebsite = id => {
-    dispatch({ type: DELETE_WEBSITE, payload: id });
+  const deleteWebsite = async id => {
+    try {
+      // Make delete req to back-end
+      await axios.delete(`./api/websites/${id}`);
+
+      dispatch({ type: DELETE_WEBSITE, payload: id });
+    } catch (error) {
+      dispatch({ type: WEBSITE_ERROR, payload: error.response.msg });
+    }
+  };
+
+  // Clear Websites
+  const clearWebsites = () => {
+    dispatch({ type: CLEAR_WEBSITES });
   };
 
   // Set Current Website
@@ -65,11 +107,6 @@ const WebsiteState = props => {
   // Clear Current Website
   const clearCurrent = () => {
     dispatch({ type: CLEAR_CURRENT });
-  };
-
-  // Update Website
-  const updateWebsite = website => {
-    dispatch({ type: UPDATE_WEBSITE, payload: website });
   };
 
   // Filter Website
@@ -90,13 +127,16 @@ const WebsiteState = props => {
         websites: state.websites,
         current: state.current,
         filtered: state.filtered,
+        error: state.error,
         addWebsite,
         deleteWebsite,
         setCurrent,
         clearCurrent,
         updateWebsite,
         filterWebsites,
-        clearFilter
+        clearFilter,
+        getWebsites,
+        clearWebsites
       }}
     >
       {props.children}

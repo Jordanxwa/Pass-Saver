@@ -1,16 +1,20 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import AuthContext from '../context/authentication/AuthContext';
+import WebsiteContext from '../context/website/WebsiteContext';
 
 function Navbar({ title, icon }) {
   const authContext = useContext(AuthContext);
+  const websiteContext = useContext(WebsiteContext);
 
   // Destructuring
   const { isAuth, logout } = authContext;
+  const { clearWebsites } = websiteContext;
 
   //User Logout Function
   const userLogout = () => {
     logout();
+    clearWebsites();
   };
 
   return (

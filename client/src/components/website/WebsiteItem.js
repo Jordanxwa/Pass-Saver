@@ -9,7 +9,7 @@ function WebsiteItem({ website }) {
 
   // Delete Function
   const onDelete = () => {
-    deleteWebsite(website.id);
+    deleteWebsite(website._id);
     clearCurrent();
   };
 

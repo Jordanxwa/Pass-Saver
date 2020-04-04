@@ -45,11 +45,7 @@ function WebsiteForm() {
       websiteContext.updateWebsite(Website);
     }
     // Clear form after submission
-    setWebsite({
-      website: '',
-      username: '',
-      password: ''
-    });
+    toUndo();
   };
 
   // Clear All Function
