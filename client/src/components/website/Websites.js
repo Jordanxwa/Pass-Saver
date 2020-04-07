@@ -7,7 +7,7 @@ function Websites() {
   const websiteContext = useContext(WebsiteContext);
 
   //Destructuring
-  const { websites, filtered, getWebsites, loading } = websiteContext;
+  const { websites, filtered, getWebsites } = websiteContext;
 
   useEffect(() => {
     getWebsites();

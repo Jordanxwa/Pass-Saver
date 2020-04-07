@@ -1,8 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&family=Nanum+Gothic:wght@400;700&display=swap');
+
 body {
-  background-color: rgb(31, 60, 148);
+  background-color: #3e5990;
+  font-family: 'Nanum Gothic' !important;
   color: #fff;
 }
 
 a {
   text-decoration: none !important;
+}
+
+.navbar {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.form-container {
+  padding-top: 5px;
+  padding-bottom: 25px;
+  padding-right: 20%;
+  padding-left: 20%;
+  border-radius: 10px;
+  box-shadow: 2px 0px 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.signText,
+.logText {
+  margin-top: 2rem !important;
+  margin-bottom: 2.5rem !important;
+  font-family: 'Nanum Gothic' !important;
+  font-weight: 700;
+}
+
+.optionTxt {
+  margin-top: 1.5rem;
+  font-family: 'Nanum Gothic' !important;
+  font-weight: 400;
+}
+
+.accountContainer {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-right: 10%;
+  padding-left: 10%;
+  border-radius: 5px;
+}
+
+@media (max-width: 515px) {
+  .form-container {
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 818px) {
+  .container {
+    margin-bottom: 50px !important;
+  }
 }

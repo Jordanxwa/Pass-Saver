@@ -18,22 +18,20 @@ function Navbar({ title, icon }) {
   };
 
   return (
-    <div className='navbar bg-light mb-3'>
-      <h1 className='text-dark'>
+    <div className='navbar bg-dark mb-3'>
+      <h1 className='text-light'>
         <i className={icon} /> {title}
       </h1>
-      <ul>
-        <li>
-          {/* If Auth is true display a logout btn */}
-          {isAuth ? (
-            <a onClick={userLogout} href='login'>
-              <button className='btn btn-secondary'>Logout</button>
-            </a>
-          ) : (
-            <div></div>
-          )}
-        </li>
-      </ul>
+      <div>
+        {/* If Auth is true display a logout btn */}
+        {isAuth ? (
+          <a onClick={userLogout} href='login'>
+            <button className='btn btn-dark'>Logout</button>
+          </a>
+        ) : (
+          ''
+        )}
+      </div>
     </div>
   );
 }

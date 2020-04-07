@@ -51,46 +51,50 @@ function LogIn(props) {
   };
 
   return (
-    <div className='container'>
-      <h1 className='text-center'>Login</h1>
-      <form onSubmit={onSubmit}>
-        <div className='form-group'>
-          <label htmlFor='email'>Email</label>
+    <div className='container mt-4'>
+      <div className='form-container'>
+        <h1 className='text-center signText'>We'll Remember For You.</h1>
+        <form onSubmit={onSubmit}>
+          <div className='form-group'>
+            <label htmlFor='email'>Email</label>
+            <input
+              type='email'
+              name='email'
+              className='form-control'
+              autoComplete='email'
+              value={email}
+              onChange={onChange}
+              required
+            />
+          </div>
+
+          <div className='form-group'>
+            <label htmlFor='password'>Password</label>
+            <input
+              type='password'
+              name='password'
+              className='form-control'
+              autoComplete='current-password'
+              value={password}
+              onChange={onChange}
+              required
+            />
+          </div>
+
           <input
-            type='email'
-            name='email'
-            className='form-control'
-            autoComplete='email'
-            value={email}
-            onChange={onChange}
-            required
+            type='submit'
+            value='Log In'
+            className='btn btn-block btn-dark mt-4'
           />
-        </div>
 
-        <div className='form-group'>
-          <label htmlFor='password'>Password</label>
-          <input
-            type='password'
-            name='password'
-            className='form-control'
-            autoComplete='current-password'
-            value={password}
-            onChange={onChange}
-            required
-          />
-        </div>
-
-        <input
-          type='submit'
-          value='Log In'
-          className='btn btn-block btn-dark'
-        />
-
-        <h5 className='text-center'>Don't have an account? Sign Up!</h5>
-        <Link to='/signup'>
-          <button className='btn btn-block btn-light'>Sign Up</button>
-        </Link>
-      </form>
+          <h5 className='text-center optionTxt'>
+            Don't have an account? Sign Up!
+          </h5>
+          <Link to='/signup'>
+            <button className='btn btn-block btn-light'>Sign Up</button>
+          </Link>
+        </form>
+      </div>
     </div>
   );
 }

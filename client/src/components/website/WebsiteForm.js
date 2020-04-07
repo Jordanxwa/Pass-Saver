@@ -55,7 +55,7 @@ function WebsiteForm() {
 
   return (
     <form onSubmit={onSubmit}>
-      <div className='form-group'>
+      <div className='form-group accountContainer'>
         <h2 className='text-light text-center'>
           {websiteContext.current ? 'Edit Account' : 'Add Account'}
         </h2>
@@ -63,7 +63,7 @@ function WebsiteForm() {
           type='text'
           name='website'
           placeholder='Website'
-          className='form-control'
+          className='form-control mb-4'
           value={website}
           onChange={onChange}
         />
@@ -71,7 +71,7 @@ function WebsiteForm() {
           type='text'
           name='username'
           placeholder='Username'
-          className='form-control'
+          className='form-control  mb-4'
           value={username}
           onChange={onChange}
         />
@@ -79,7 +79,7 @@ function WebsiteForm() {
           type='text'
           name='password'
           placeholder='Password'
-          className='form-control'
+          className='form-control  mb-4'
           value={password}
           onChange={onChange}
         />
@@ -87,7 +87,7 @@ function WebsiteForm() {
           <input
             type='submit'
             value={websiteContext.current ? 'Update Account' : 'Add Account'}
-            className='btn btn-block btn-dark'
+            className='btn btn-block btn-dark mb-2'
           />
         </div>
         {websiteContext.current && (

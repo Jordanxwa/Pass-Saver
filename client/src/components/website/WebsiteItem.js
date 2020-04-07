@@ -14,37 +14,39 @@ function WebsiteItem({ website }) {
   };
 
   return (
-    <div className='card bg-light  align-items-center mt-2'>
+    <div className='card bg-light  align-items-center mt-2 p-2 mb-3'>
       <h3 className='text-center text-dark pb-3'>Account</h3>
 
       <h5 className='text-dark'>
         <span class={{ float: 'left', paddingRight: 20 }}>
-          <i class='fas fa-laptop'></i>
+          <i class='fas fa-laptop pr-1'></i>
         </span>
         <span className='text-center'>{website.website}</span>
       </h5>
 
       <h5 className='text-dark'>
         <span class={{ float: 'left', paddingRight: 20 }}>
-          <i class='fas fa-user'></i>
+          <i class='fas fa-user pr-1'></i>
         </span>
         <span className='text-center'>{website.username}</span>
       </h5>
 
       <h5 className='text-dark'>
         <span class={{ float: 'left', paddingRight: 20 }}>
-          <i class='fas fa-key'></i>
+          <i class='fas fa-key pr-1'></i>
         </span>
         <span className='text-center'>{website.password}</span>
       </h5>
       <div>
-        <button
-          type='button'
-          className='btn btn-sm btn-outline-dark'
-          onClick={() => setCurrent(website)}
-        >
-          Edit
-        </button>
+        <span className='pr-1'>
+          <button
+            type='button'
+            className='btn btn-sm btn-outline-dark '
+            onClick={() => setCurrent(website)}
+          >
+            Edit
+          </button>
+        </span>
         <button
           type='button'
           className='btn btn-sm btn-outline-danger'

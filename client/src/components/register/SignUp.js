@@ -54,57 +54,61 @@ function SignUp(props) {
 
   return (
     <div className='container'>
-      <h1 className='text-center'>Sign Up</h1>
-      <form onSubmit={onSubmit}>
-        <div className='form-group'>
-          <label htmlFor='name'>Name</label>
-          <input
-            type='text'
-            name='name'
-            className='form-control'
-            value={name}
-            onChange={onChange}
-            required
-          />
-        </div>
+      <div className='form-container mb-4 mt-4'>
+        <h1 className='text-center logText'>We'll Remember For You.</h1>
+        <form onSubmit={onSubmit}>
+          <div className='form-group'>
+            <label htmlFor='name'>Name</label>
+            <input
+              type='text'
+              name='name'
+              className='form-control'
+              value={name}
+              onChange={onChange}
+              required
+            />
+          </div>
 
-        <div className='form-group'>
-          <label htmlFor='email'>Email</label>
-          <input
-            type='email'
-            name='email'
-            autoComplete='email'
-            className='form-control'
-            value={email}
-            onChange={onChange}
-            required
-          />
-        </div>
+          <div className='form-group'>
+            <label htmlFor='email'>Email</label>
+            <input
+              type='email'
+              name='email'
+              autoComplete='email'
+              className='form-control'
+              value={email}
+              onChange={onChange}
+              required
+            />
+          </div>
 
-        <div className='form-group'>
-          <label htmlFor='password'>Password</label>
-          <input
-            type='password'
-            name='password'
-            className='form-control'
-            autoComplete='current-password'
-            value={password}
-            onChange={onChange}
-            required
-            minLength='6'
-          />
-        </div>
+          <div className='form-group'>
+            <label htmlFor='password'>Password</label>
+            <input
+              type='password'
+              name='password'
+              className='form-control'
+              autoComplete='current-password'
+              value={password}
+              onChange={onChange}
+              required
+              minLength='6'
+            />
+          </div>
 
-        <input
-          type='submit'
-          value='Sign Up'
-          className='btn btn-block btn-dark'
-        />
-        <h5 className='text-center'>Already have an account? Login!</h5>
-        <Link to='/login'>
-          <button className='btn btn-block btn-light'>Login</button>
-        </Link>
-      </form>
+          <input
+            type='submit'
+            value='Sign Up'
+            className='btn btn-block btn-dark mt-4'
+          />
+          <h5 className='text-center optionTxt'>
+            Already have an account? Login!
+          </h5>
+          <Link to='/login'>
+            <button className='btn btn-block btn-light'>Login</button>
+          </Link>
+        </form>
+      </div>
     </div>
   );
 }
